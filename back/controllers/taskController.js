@@ -9,3 +9,20 @@ exports.getAllTasks = async (req, res, next) => {
     console.log(err);
   }
 };
+
+exports.createTask = async (req, res, next) => {
+  try {
+    const { description, status } = req.body;
+
+    const task = await Task.create({ description, status });
+
+    res.status(201).json({
+      status: 'success',
+      data: {
+        task,
+      },
+    });
+  } catch (err) {
+    console.log(err);
+  }
+};
