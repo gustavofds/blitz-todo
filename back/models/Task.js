@@ -6,7 +6,7 @@ const taskSchema = new mongoose.Schema({
     required: [true, 'A task must have a description.'],
     trim: true,
   },
-  creationDate: {
+  createdAt: {
     type: Date,
     default: Date.now(),
   },
