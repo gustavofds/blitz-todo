@@ -1,4 +1,5 @@
 const Task = require('../models/Task');
+const AppError = require('../utils/AppError');
 
 exports.getAllTasks = async (req, res, next) => {
   try {
@@ -6,7 +7,7 @@ exports.getAllTasks = async (req, res, next) => {
 
     res.status(200).send(tasks);
   } catch (err) {
-    console.log(err);
+    next(err);
   }
 };
 
@@ -23,7 +24,7 @@ exports.createTask = async (req, res, next) => {
       },
     });
   } catch (err) {
-    console.log(err);
+    next(err);
   }
 };
 
@@ -37,7 +38,7 @@ exports.updateTask = async (req, res, next) => {
     });
 
     if (!task) {
-      return res.status(404).json({ message: 'No task found with that ID' });
+      return next(new AppError('No task found with that ID', 404));
     }
 
     res.status(201).json({
@@ -47,7 +48,7 @@ exports.updateTask = async (req, res, next) => {
       },
     });
   } catch (err) {
-    console.log(err);
+    next(err);
   }
 };
 
@@ -58,11 +59,11 @@ exports.deleteTask = async (req, res, next) => {
     const task = await Task.findByIdAndDelete(id);
 
     if (!task) {
-      return res.status(404).json({ message: 'No task found with that ID' });
+      return next(new AppError('No task found with that ID', 404));
     }
 
     res.status(204).end();
   } catch (err) {
-    console.log(err);
+    next(err);
   }
 };
