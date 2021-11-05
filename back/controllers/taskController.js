@@ -36,12 +36,32 @@ exports.updateTask = async (req, res, next) => {
       new: true,
     });
 
+    if (!task) {
+      return res.status(404).json({ message: 'No task found with that ID' });
+    }
+
     res.status(201).json({
       status: 'success',
       data: {
         task,
       },
     });
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+exports.deleteTask = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+
+    const task = await Task.findByIdAndDelete(id);
+
+    if (!task) {
+      return res.status(404).json({ message: 'No task found with that ID' });
+    }
+
+    res.status(204).end();
   } catch (err) {
     console.log(err);
   }
