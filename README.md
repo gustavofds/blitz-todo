@@ -8,7 +8,7 @@ Trata-se de uma aplicação de controle de lista de tarefas, onde é possível:
 - Listar todas as tarefas.
 
 A aplicação pode ser consultada em produção nos seguintes links:
-- https://roompaint-calc.herokuapp.com/ (Front-end)
+- https://ebytr-todo.herokuapp.com (Front-end)
 - https://ebytr-todo-back.herokuapp.com/api/tasks (Back-End)
 
 ## Como rodar a aplicação localmente
