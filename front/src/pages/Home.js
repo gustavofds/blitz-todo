@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import TaskList from '../components/TaskList';
+import CreateTask from '../components/CreateTask';
 
 function Home() {
   const [isLoading, setIsLoading] = useState(true);
@@ -19,6 +20,9 @@ function Home() {
   return (
     <>
       <h1>Ebytr - Lista de Tarefas</h1>
+
+      <CreateTask setTasks={setTasks} />
+
       {isLoading ? (
         'Carregando...'
       ) : (
