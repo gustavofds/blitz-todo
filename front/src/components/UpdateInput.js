@@ -18,7 +18,8 @@ function UpdateInput({ task, setIsUpdating, setTasks }) {
     setTaskStatus(value);
   };
 
-  const submitUpdate = () => {
+  const submitUpdate = (ev) => {
+    ev.preventDefault();
     axios({
       method: 'PUT',
       url: `http://localhost:4000/api/tasks/${task._id}`,

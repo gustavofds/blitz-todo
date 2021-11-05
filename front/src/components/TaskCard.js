@@ -5,7 +5,8 @@ import { useState } from 'react';
 function TaskCard({ task, setTasks }) {
   const [isUpdating, setIsUpdating] = useState(false);
 
-  const deleteTask = (task) => {
+  const deleteTask = (ev) => {
+    ev.preventDefault();
     axios
       .delete(`http://localhost:4000/api/tasks/${task._id}`)
       .then(() => axios.get('http://localhost:4000/api/tasks'))
@@ -27,8 +28,8 @@ function TaskCard({ task, setTasks }) {
           setTasks={setTasks}
         />
       )}
-      <button onClick={() => deleteTask(task)}>Deletar</button>
-      <button onClick={handleUpdate}>Atualizar</button>
+      <button onClick={deleteTask}>Deletar</button>
+      {!isUpdating && <button onClick={handleUpdate}>Atualizar</button>}
     </li>
   );
 }

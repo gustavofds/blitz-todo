@@ -16,7 +16,8 @@ function CreateTask({ setTasks }) {
     setNewStatus(value);
   };
 
-  const submitNewTask = () => {
+  const submitNewTask = (ev) => {
+    ev.preventDefault();
     axios({
       method: 'POST',
       url: 'http://localhost:4000/api/tasks',
