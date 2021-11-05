@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { useState } from 'react';
+import StatusSelect from './StatusSelect';
 
 function CreateTask({ setTasks }) {
   const [newDescription, setNewDescription] = useState('');
@@ -32,11 +33,9 @@ function CreateTask({ setTasks }) {
         onChange={handleDescriptionChange}
         placeholder="Descrição da tarefa"
       />
-      <select value={newStatus} onChange={handleStatusChange}>
-        <option value="pending">Pendente</option>
-        <option value="in-progress">Em andamento</option>
-        <option value="done">Pronto</option>
-      </select>
+
+      <StatusSelect value={newStatus} onChange={handleStatusChange} />
+
       <button>Enviar nova Tarefa</button>
     </form>
   );

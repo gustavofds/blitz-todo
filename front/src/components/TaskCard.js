@@ -1,4 +1,5 @@
 import axios from 'axios';
+import UpdateInput from './UpdateInput';
 import { useState } from 'react';
 
 function TaskCard({ task, setTasks }) {
@@ -12,12 +13,20 @@ function TaskCard({ task, setTasks }) {
   };
 
   const handleUpdate = () => {
-    setIsUpdating(true);
+    setIsUpdating(!isUpdating);
   };
 
   return (
     <li>
-      {!isUpdating ? `${task.description} - ${task.status}` : 'Atualizando'}
+      {!isUpdating ? (
+        `${task.description} - ${task.status}`
+      ) : (
+        <UpdateInput
+          task={task}
+          setIsUpdating={setIsUpdating}
+          setTasks={setTasks}
+        />
+      )}
       <button onClick={() => deleteTask(task)}>Deletar</button>
       <button onClick={handleUpdate}>Atualizar</button>
     </li>
