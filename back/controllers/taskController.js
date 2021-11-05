@@ -3,7 +3,19 @@ const AppError = require('../utils/AppError');
 
 exports.getAllTasks = async (req, res, next) => {
   try {
-    const tasks = await Task.find();
+    let tasks;
+
+    if (req.query.sortBy && req.query.status) {
+      tasks = await Task.find({ status: req.query.status }).sort({
+        [req.query.sortBy]: req.query.order,
+      });
+    } else if (req.query.sortBy) {
+      tasks = await Task.find().sort({ [req.query.sortBy]: req.query.order });
+    } else if (req.query.status) {
+      tasks = await Task.find({ status: req.query.status });
+    } else {
+      tasks = await Task.find().sort({ description: -1 });
+    }
 
     res.status(200).send(tasks);
   } catch (err) {
