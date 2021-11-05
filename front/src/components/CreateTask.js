@@ -24,7 +24,11 @@ function CreateTask({ setTasks }) {
       data: { description: newDescription, status: newStatus },
     })
       .then(() => axios.get('https://ebytr-todo-back.herokuapp.com/api/tasks'))
-      .then((data) => setTasks(data.data));
+      .then((data) => {
+        setTasks(data.data);
+        setNewDescription('');
+        setNewStatus('pending');
+      });
   };
 
   return (
