@@ -10,13 +10,11 @@ function Home() {
   useEffect(() => {
     setIsLoading(true);
 
-    axios
-      .get('https://ebytr-todo-back.herokuapp.com/api/tasks')
-      .then((data) => {
-        setTasks(data.data);
+    axios.get('http://localhost:4000/api/tasks').then((data) => {
+      setTasks(data.data);
 
-        setIsLoading(false);
-      });
+      setIsLoading(false);
+    });
   }, []);
 
   return (
