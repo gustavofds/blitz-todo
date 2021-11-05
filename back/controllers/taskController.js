@@ -26,3 +26,23 @@ exports.createTask = async (req, res, next) => {
     console.log(err);
   }
 };
+
+exports.updateTask = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+
+    const task = await Task.findByIdAndUpdate(id, req.body, {
+      runValidators: true,
+      new: true,
+    });
+
+    res.status(201).json({
+      status: 'success',
+      data: {
+        task,
+      },
+    });
+  } catch (err) {
+    console.log(err);
+  }
+};
