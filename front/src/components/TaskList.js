@@ -1,10 +1,10 @@
 import TaskCard from './TaskCard';
 
-function TaskList({ tasks }) {
+function TaskList({ tasks, setTasks }) {
   return (
     <ol>
       {tasks.map((task) => (
-        <TaskCard task={task} key={task._id} />
+        <TaskCard task={task} setTasks={setTasks} key={task._id} />
       ))}
     </ol>
   );

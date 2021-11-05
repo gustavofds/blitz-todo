@@ -19,7 +19,11 @@ function Home() {
   return (
     <>
       <h1>Ebytr - Lista de Tarefas</h1>
-      {isLoading ? 'Carregando...' : <TaskList tasks={tasks} />}
+      {isLoading ? (
+        'Carregando...'
+      ) : (
+        <TaskList tasks={tasks} setTasks={setTasks} />
+      )}
     </>
   );
 }
