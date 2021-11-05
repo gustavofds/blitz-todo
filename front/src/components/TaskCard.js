@@ -8,8 +8,8 @@ function TaskCard({ task, setTasks }) {
   const deleteTask = (ev) => {
     ev.preventDefault();
     axios
-      .delete(`https://ebytr-todo-back.herokuapp.com/api/tasks/${task._id}`)
-      .then(() => axios.get('https://ebytr-todo-back.herokuapp.com/api/tasks'))
+      .delete(`http://localhost:4000/api/tasks/${task._id}`)
+      .then(() => axios.get('http://localhost:4000/api/tasks'))
       .then((data) => setTasks(data.data));
   };
 
@@ -28,7 +28,7 @@ function TaskCard({ task, setTasks }) {
           setTasks={setTasks}
         />
       )}
-      {!isUpdating && <button onClick={deleteTask}>Deletar</button>}
+      <button onClick={deleteTask}>Deletar</button>
       {!isUpdating && <button onClick={handleUpdate}>Atualizar</button>}
     </li>
   );

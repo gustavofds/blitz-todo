@@ -20,15 +20,11 @@ function CreateTask({ setTasks }) {
     ev.preventDefault();
     axios({
       method: 'POST',
-      url: 'https://ebytr-todo-back.herokuapp.com/api/tasks',
+      url: 'http://localhost:4000/api/tasks',
       data: { description: newDescription, status: newStatus },
     })
-      .then(() => axios.get('https://ebytr-todo-back.herokuapp.com/api/tasks'))
-      .then((data) => {
-        setTasks(data.data);
-        setNewDescription('');
-        setNewStatus('pending');
-      });
+      .then(() => axios.get('http://localhost:4000/api/tasks'))
+      .then((data) => setTasks(data.data));
   };
 
   return (

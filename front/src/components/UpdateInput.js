@@ -22,10 +22,10 @@ function UpdateInput({ task, setIsUpdating, setTasks }) {
     ev.preventDefault();
     axios({
       method: 'PUT',
-      url: `https://ebytr-todo-back.herokuapp.com/api/tasks/${task._id}`,
+      url: `http://localhost:4000/api/tasks/${task._id}`,
       data: { description: taskDesc, status: taskStatus },
     })
-      .then(() => axios.get('https://ebytr-todo-back.herokuapp.com/api/tasks'))
+      .then(() => axios.get('http://localhost:4000/api/tasks'))
       .then((data) => {
         setTasks(data.data);
         setIsUpdating(false);
