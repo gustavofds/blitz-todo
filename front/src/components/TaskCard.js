@@ -28,7 +28,7 @@ function TaskCard({ task, setTasks }) {
         />
       )}
       <button onClick={() => deleteTask(task)}>Deletar</button>
-      <button onClick={handleUpdate}>Atualizar</button>
+      {!isUpdating && <button onClick={handleUpdate}>Atualizar</button>}
     </li>
   );
 }
